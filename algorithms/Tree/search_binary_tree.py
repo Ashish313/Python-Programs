@@ -1,0 +1,75 @@
+
+class Node:
+    def __init__(self,data):
+        self.left=None
+        self.right=None
+        self.data=data
+
+    def insert(self,data):
+
+        # if the inserted element is less than the node element
+        # insert the element on the left of the node
+        if data < self.data:
+            if self.left is None:
+                self.left=Node(data)
+            else:
+                self.left.insert(data)
+
+
+        # if the inserted element is greater than the node element
+        # insert the element on the right of the node
+        elif data > self.data:
+            if self.right is None:
+                self.right=Node(data)
+            else:
+                self.right.insert(data)
+
+
+    # find the vaalue by comparing it with each node value
+    def findval(self,val):
+        if self.data:
+            if val < self.data:
+                if self.left is None:
+                    print(f'{val} Not Found!')
+                else:
+                    self.left.findval(val)
+
+            elif val > self.data:
+                if self.right is None:
+                    print(f'{val} Not Found!')
+                else:
+                    self.right.findval(val)
+
+            else:
+                print(f'{val} Found!')
+
+        else:
+            self.data=data
+
+
+    # print the tree
+    def print_tree(self):
+        if self.left:
+            self.left.print_tree()
+
+        print(self.data)
+
+        if self.right:
+            self.right.print_tree()
+
+
+# driver code
+root = Node(12)
+root.insert(6)
+root.insert(14)
+root.insert(3)
+root.insert(3)
+
+print('Traversing the Binary Tree:-')
+print('*'*28)
+root.print_tree()
+print('*'*28)
+
+print()
+root.findval(7)
+root.findval(14)
